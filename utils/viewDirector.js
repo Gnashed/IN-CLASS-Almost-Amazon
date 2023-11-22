@@ -4,6 +4,7 @@ import loginButton from '../components/buttons/loginButton';
 import startApp from './startApp';
 import client from './client';
 
+// Checks whether not a user is logged in.
 const ViewDirectorBasedOnUserAuthStatus = () => {
   firebase.initializeApp(client);
   firebase.auth().onAuthStateChanged((user) => {

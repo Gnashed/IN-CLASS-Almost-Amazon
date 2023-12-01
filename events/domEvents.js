@@ -2,6 +2,7 @@ import { showBooks } from '../pages/books';
 import { showAuthors } from '../pages/authors';
 import { getBooks, deleteBook } from '../api/bookData';
 import addBookForm from '../components/forms/addBookForm';
+import addAuthorForm from '../components/forms/addAuthorForm';
 import { deleteSingleAuthor, getAuthors } from '../api/authorData';
 
 const domEvents = () => {
@@ -50,7 +51,7 @@ const domEvents = () => {
 
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
-      console.warn('ADD AUTHOR');
+      addAuthorForm();
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
   });

@@ -34,7 +34,20 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET SINGLE BOOK
-const getSingleBook = () => {};
+const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    // Will wait, then do this thing, then do this other thing. W/O .then, the code will
+    // run without getting the data. This tells it to wait.
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data))) // Taking the data from the obj, resolve() turns/packages data
+    // into an array of things.
+    .catch(reject);
+});
 
 // TODO: CREATE BOOK
 const createBook = (payload) => new Promise((resolve, reject) => {
@@ -53,7 +66,7 @@ const createBook = (payload) => new Promise((resolve, reject) => {
 // TODO: UPDATE BOOK
 const updateBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
-    method: 'PATCH',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },

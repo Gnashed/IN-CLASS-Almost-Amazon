@@ -33,7 +33,20 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
 });
 
 // FIXME: GET SINGLE AUTHOR
-const getSingleAuthor = () => {};
+const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    // Will wait, then do this thing, then do this other thing. W/O .then, the code will
+    // run without getting the data. This tells it to wait.
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data))) // Taking the data from the obj, resolve() turns/packages data
+    // into an array of things.
+    .catch(reject);
+});
 
 // FIXME: DELETE AUTHOR
 const deleteSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
@@ -50,7 +63,18 @@ const deleteSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // FIXME: UPDATE AUTHOR
-const updateAuthor = () => {};
+const updateAuthor = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${payload.firebaseKey}.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
 
 // Filter Authors
 const favoriteAuthors = () => new Promise((resolve, reject) => {

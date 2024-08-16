@@ -11,7 +11,7 @@ const navBar = () => {
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#" id="all-books">
+              <a class="nav-link" href="#books" id="all-books">
                 All Books <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -19,7 +19,7 @@ const navBar = () => {
               <a class="nav-link" href="#" id="sale-books">Books on Sale</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="authors">Authors</a>
+              <a class="nav-link" href="#authors" id="authors">Authors</a>
             </li>
             <li>
             <input

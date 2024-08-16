@@ -1,5 +1,5 @@
 import { getAuthors } from '../api/authorData';
-import { getBooks } from '../api/bookData';
+import { booksOnSale, getBooks } from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 import { signOut } from '../utils/auth';
@@ -12,7 +12,7 @@ const navigationEvents = () => {
 
   // TODO: BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
-    console.warn('CLICKED SALE BOOKS');
+    booksOnSale().then((books) => showBooks(books));
   });
 
   // TODO: ALL BOOKS
@@ -20,7 +20,6 @@ const navigationEvents = () => {
     getBooks().then((books) => showBooks(books));
   });
 
-  // FIXME: STUDENTS Create an event listener for the Authors
   // 1. When a user clicks the authors link, make a call to firebase to get all authors
   // 2. Convert the response to an array because that is what the makeAuthors function is expecting
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function

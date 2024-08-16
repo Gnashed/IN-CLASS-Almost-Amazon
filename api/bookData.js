@@ -32,7 +32,20 @@ const createBook = () => {};
 const updateBook = () => {};
 
 // TODO: FILTER BOOKS ON SALE
-const booksOnSale = () => {};
+const booksOnSale = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(Object.values(data));
+      // console.warn(data);
+    })
+    .catch(reject);
+});
 
 // TODO: STRETCH...SEARCH BOOKS
 

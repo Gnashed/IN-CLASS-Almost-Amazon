@@ -10,13 +10,15 @@ const navigationEvents = () => {
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
 
-  // TODO: BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
     booksOnSale().then((books) => showBooks(books));
   });
 
-  // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
+    getBooks().then((books) => showBooks(books));
+  });
+
+  document.querySelector('.navbar-brand').addEventListener('click', () => {
     getBooks().then((books) => showBooks(books));
   });
 

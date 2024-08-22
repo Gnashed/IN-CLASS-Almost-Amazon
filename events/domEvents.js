@@ -33,7 +33,7 @@ const domEvents = () => {
     if (e.target.id.includes('view-book-btn')) {
       // console.warn('VIEW BOOK', e.target.id);
       const [, firebaseKey] = e.target.id.split('--');
-      viewBook(firebaseKey);
+      getSingleBook(firebaseKey).then((book) => viewBook(book));
     }
 
     // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR

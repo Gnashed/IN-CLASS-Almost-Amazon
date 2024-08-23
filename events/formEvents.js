@@ -48,7 +48,7 @@ const formEvents = () => {
       // console.warn(firebaseKey);
     }
 
-    // FIXME: ADD CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
+    // CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('submit-author')) {
       console.warn('CLICKED SUBMIT AUTHOR');
       const payload = {
@@ -64,6 +64,20 @@ const formEvents = () => {
       });
     }
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR
+    if (e.target.id.includes('update-author')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      // console.warn('CLICKED EDIT AUTHOR');
+      const payload = {
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
+        email: document.querySelector('#email').value,
+        firebaseKey,
+      };
+
+      updateAuthor(payload).then(() => {
+        getAuthors().then(showAuthors);
+      });
+    }
   });
 };
 

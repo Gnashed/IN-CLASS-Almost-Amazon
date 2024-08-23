@@ -28,7 +28,7 @@ const domEvents = () => {
       // Grab current object from Firebase to prepop the form with those values.
       getSingleBook(firebaseKey).then((singleBook) => addBookForm(singleBook));
     }
-    // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
+
     if (e.target.id.includes('view-book-btn')) {
       // console.warn('VIEW BOOK', e.target.id);
       const [, firebaseKey] = e.target.id.split('--');
@@ -46,7 +46,6 @@ const domEvents = () => {
       }
     }
 
-    // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
       // console.warn('ADD AUTHOR');
       addAuthorForm();

@@ -48,9 +48,9 @@ const formEvents = () => {
       // console.warn(firebaseKey);
     }
 
-    // CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
+    // CLICK EVENT FOR SUBMITTING FORM FOR CREATING AN AUTHOR
     if (e.target.id.includes('submit-author')) {
-      console.warn('CLICKED SUBMIT AUTHOR');
+      // console.warn('CLICKED SUBMIT AUTHOR');
       const payload = {
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
@@ -60,7 +60,9 @@ const formEvents = () => {
       createAuthor(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateAuthor(patchPayload).then(() => getAuthors().then(showAuthors));
+        updateAuthor(patchPayload).then(() => {
+          getAuthors().then(showAuthors);
+        });
       });
     }
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR

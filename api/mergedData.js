@@ -12,4 +12,13 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
   // Create an object that has book data and an object named authorObject
 });
 
-export default getBookDetails;
+const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
+  // GET SINGLE AUTHOR
+  getSingleAuthor(firebaseKey).then((authorObject) => { // return single author object, make an API call to get the author information based on the returned author object from above.
+    getSingleBook(authorObject.author_id) // we nest this promise so that we can use the author object
+      .then((bookObject) => resolve({ ...authorObject, bookObject }));
+  }).catch(reject);
+  // GET AUTHOR
+});
+
+export { getBookDetails, getAuthorDetails };

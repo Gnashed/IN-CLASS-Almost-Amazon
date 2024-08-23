@@ -19,6 +19,9 @@ const navBar = () => {
               <a class="nav-link" href="#books-on-sale" id="sale-books">Books on Sale</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#favorite-authors" id="favorite-authors">Favorite Authors</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#authors" id="authors">Authors</a>
             </li>
             <li>

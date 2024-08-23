@@ -1,4 +1,4 @@
-import { deleteSingleAuthor, getAuthors } from '../api/authorData';
+import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
 import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
 import getBookDetails from '../api/mergedData';
 import addAuthorForm from '../components/forms/addAuthorForm';
@@ -9,6 +9,7 @@ import viewBook from '../pages/viewBook';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
+    // ============================ BOOKS ============================
     if (e.target.id.includes('delete-book')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
@@ -35,20 +36,25 @@ const domEvents = () => {
       getBookDetails(firebaseKey).then(viewBook);
     }
 
+    // ============================ AUTHORS ============================
+    if (e.target.id.includes('add-author-btn')) {
+      // console.warn('ADD AUTHOR');
+      addAuthorForm();
+    }
+
+    if (e.target.id.includes('update-author')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      // Grab current object from Firebase to prepop the form with those values.
+      getSingleAuthor(firebaseKey).then((singleAuthorObj) => addAuthorForm(singleAuthorObj));
+    }
+
     if (e.target.id.includes('delete-author-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         // console.warn('DELETE AUTHOR', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
-        deleteSingleAuthor(firebaseKey).then(() => {
-          getAuthors().then(showAuthors);
-        });
+        deleteSingleAuthor(firebaseKey).then(getAuthors().then(showAuthors));
       }
-    }
-
-    if (e.target.id.includes('add-author-btn')) {
-      // console.warn('ADD AUTHOR');
-      addAuthorForm();
     }
   });
 };

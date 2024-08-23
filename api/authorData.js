@@ -11,10 +11,7 @@ const getAuthors = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      resolve(Object.values(data));
-      // console.warn(data);
-    })
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
 

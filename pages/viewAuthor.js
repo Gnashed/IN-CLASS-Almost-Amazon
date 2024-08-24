@@ -9,7 +9,8 @@ const viewAuthor = (obj) => {
     <div class="view-author-info">
       <section class="author-info" style="color: wheat;">
         <h5>
-          ${obj.first_name} ${obj.last_name} <img width="50" height="50" src="https://img.icons8.com/ios/50/like--v1.png" alt="like--v1" style="background-color: red;" />
+          ${obj.first_name} ${obj.last_name}
+          ${obj.favorite ? '<img width="50" height="50" src="https://img.icons8.com/ios/50/like--v1.png" alt="like--v1" style="background-color: red;" />' : ''}
         </h5>
         <p>${obj.email}</p>
         <div class="mt-5">

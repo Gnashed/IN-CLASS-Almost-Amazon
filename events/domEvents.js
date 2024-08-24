@@ -1,6 +1,6 @@
-import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
+import { getAuthors, getSingleAuthor } from '../api/authorData';
 import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
-import { getBookDetails, getAuthorDetails } from '../api/mergedData';
+import { getBookDetails, getAuthorDetails, deleteAuthorBooksRelationship } from '../api/mergedData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
 import { showAuthors } from '../pages/authors';
@@ -55,12 +55,15 @@ const domEvents = () => {
       getSingleAuthor(firebaseKey).then((singleAuthorObj) => addAuthorForm(singleAuthorObj));
     }
 
-    if (e.target.id.includes('delete-author-btn')) {
+    if (e.target.id.includes('delete-author')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         // console.warn('DELETE AUTHOR', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
-        deleteSingleAuthor(firebaseKey).then(getAuthors().then(showAuthors));
+        // deleteSingleAuthor(firebaseKey).then(getAuthors().then(showAuthors));
+        deleteAuthorBooksRelationship(firebaseKey).then(() => {
+          getAuthors().then(showAuthors);
+        });
       }
     }
   });

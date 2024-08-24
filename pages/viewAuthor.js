@@ -8,7 +8,10 @@ const viewAuthor = (obj) => {
   const domString = `
     <div class="view-author-info">
       <section class="author-info" style="color: wheat;">
-        <h5>${obj.first_name} ${obj.last_name}</h5>
+        <h5>
+          ${obj.first_name} ${obj.last_name}
+          ${obj.favorite ? '<img width="50" height="50" src="https://img.icons8.com/ios/50/like--v1.png" alt="like--v1" style="background-color: red;" />' : ''}
+        </h5>
         <p>${obj.email}</p>
         <div class="mt-5">
           <i id="edit-author-btn--${obj.firebaseKey}" class="fas fa-edit btn btn-info">Edit</i>
@@ -35,7 +38,9 @@ const viewAuthor = (obj) => {
         <img class="card-img-top" src=${book.image} alt=${book.title} style="height: 400px;">
         <div class="card-body" style="height: 180px;">
           <h5 class="card-title">${book.title}</h5>
-            <p class="card-text bold">${book.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${book.price}` : `$${book.price}`}</p>
+            <p class="card-text bold">
+              ${book.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${book.price}` : `$${book.price}`}
+            </p>
             <hr>
             <i class="btn btn-success fas fa-eye" id="view-book-btn--${book.firebaseKey}">View</i>
             <i id="edit-book-btn--${book.firebaseKey}" class="fas fa-edit btn btn-info">Edit</i>

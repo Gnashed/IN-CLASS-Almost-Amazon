@@ -15,12 +15,13 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
 const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
   // GET SINGLE AUTHOR
   getSingleAuthor(firebaseKey).then((authorObject) => { // return single author object, make an API call using this object.
-    // FIXME: FirebaseKey shows in console, but no data.
-    // console.warn(authorObject.firebaseKey);
     getAuthorBooks(authorObject.firebaseKey) // we nest this promise so that we can use the author object from above.
-      .then((bookObject) => resolve({ ...authorObject, bookObject }));
+      .then((bookObject) => {
+        const test = { ...authorObject, bookObject };
+        console.warn(test);
+        resolve(test);
+      });
   }).catch(reject);
-  // GET AUTHOR
 });
 
 export { getBookDetails, getAuthorDetails };

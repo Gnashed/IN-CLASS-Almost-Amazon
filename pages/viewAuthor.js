@@ -5,7 +5,7 @@ const viewAuthor = (obj) => {
   clearDom();
 
   const domString = `
-    <div class="view-author-info">
+    <div class="view-author-info d-flex flex-column text-center">
       <section class="author-info" style="color: wheat;">
         <h5>
           ${obj.first_name} ${obj.last_name}
@@ -18,7 +18,7 @@ const viewAuthor = (obj) => {
           <hr style="color: white;">
         </div>
       </section>
-      <section class="books-from-author">
+      <section class="books-from-author d-flex">
         <h4 style="color: wheat;">Books</h4>
       </section>
     </div>
@@ -33,7 +33,7 @@ const viewAuthor = (obj) => {
 
   books.forEach((book) => {
     bookDomString += `
-      <div class="card">
+      <div class="card" style="width: 25rem;">
         <img class="card-img-top" src=${book.image} alt=${book.title} style="height: 400px;">
         <div class="card-body" style="height: 180px;">
           <h5 class="card-title">${book.title}</h5>

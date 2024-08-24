@@ -5,6 +5,8 @@ const viewAuthor = (obj) => {
   clearDom();
 
   // TODO: Add an interactive favorite button.
+
+  // TODO: Render the author's books here. obj.bookObject.firebaseKey
   const domString = `
     <div class="view-author-info">
       <section class="author-info" style="color: wheat;">
@@ -18,7 +20,6 @@ const viewAuthor = (obj) => {
       </section>
       <section class="books-from-author">
         <h4 style="color: wheat;">Books</h4>
-        // TODO: Render the author's books here
       </section>
     </div>
    `;

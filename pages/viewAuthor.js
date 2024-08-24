@@ -1,7 +1,6 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
-// TODO: Add an interactive favorite button.
 const viewAuthor = (obj) => {
   clearDom();
 

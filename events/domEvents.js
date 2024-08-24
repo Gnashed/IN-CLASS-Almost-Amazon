@@ -42,7 +42,7 @@ const domEvents = () => {
       // console.warn('ADD AUTHOR');
       addAuthorForm();
     }
-    // TODO: Create getAuthorDetails
+
     if (e.target.id.includes('view-author-btn')) {
       // console.warn('ADD AUTHOR');
       const [, firebaseKey] = e.target.id.split('--');

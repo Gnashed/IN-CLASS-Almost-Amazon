@@ -87,7 +87,6 @@ const booksOnSale = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: STRETCH...SEARCH BOOKS
 const searchBooks = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json?orderBy="title"`, {
     method: 'GET',

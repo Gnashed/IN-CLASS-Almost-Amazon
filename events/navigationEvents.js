@@ -43,10 +43,12 @@ const navigationEvents = () => {
       searchBooks().then((arrayOfBooks) => {
         const searchResults = arrayOfBooks.filter((book) => book.title.toLowerCase().includes(searchValue));
         showBooks(searchResults);
+        // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
+        // OTHERWISE SHOW THE STORE
+        if (!arrayOfBooks) {
+          showBooks(arrayOfBooks);
+        }
       });
-      // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
-      // OTHERWISE SHOW THE STORE
-
       document.querySelector('#search').value = '';
     }
   });

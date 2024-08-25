@@ -1,5 +1,5 @@
 import { favoriteAuthors, getAuthors } from '../api/authorData';
-import { booksOnSale, getBooks } from '../api/bookData';
+import { booksOnSale, getBooks, searchBooks } from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 import { signOut } from '../utils/auth';
@@ -40,6 +40,10 @@ const navigationEvents = () => {
     // WHEN THE USER PRESSES ENTER, MAKE THE API CALL AND CLEAR THE INPUT
     if (e.keyCode === 13) {
       // MAKE A CALL TO THE API TO FILTER ON THE BOOKS
+      searchBooks().then((arrayOfBooks) => {
+        const searchResults = arrayOfBooks.filter((book) => book.title.toLowerCase().includes(searchValue));
+        showBooks(searchResults);
+      });
       // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
       // OTHERWISE SHOW THE STORE
 

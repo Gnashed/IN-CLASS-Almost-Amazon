@@ -7,16 +7,17 @@ import navigationEvents from '../events/navigationEvents';
 import { getBooks } from '../api/bookData';
 import { showBooks } from '../pages/books';
 
-const startApp = () => {
-  domBuilder(); // BUILD THE DOM
-  domEvents(); // ADD THE EVENT LISTENTERS TO THE DOM
-  formEvents(); // ADD FORM EVENT LISTENTERS TO THE DOM
+// We want to make sure the following events gets access to the UID when CRUDing.
+const startApp = (user) => {
+  domBuilder(user); // BUILD THE DOM
+  domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
+  formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
 
   // Put all books on the DOM on App load
-  getBooks().then((books) => showBooks(books));
+  getBooks(user.uid).then((books) => showBooks(books));
 };
 
 export default startApp;

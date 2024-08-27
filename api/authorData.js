@@ -90,15 +90,18 @@ const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // GET - FILTER BY FAVORITE AUTHORS
-const favoriteAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=true`, {
+const favoriteAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      const userId = Object.values(data).filter((item) => item.uid);
+      resolve(userId);
+    })
     .catch(reject);
 });
 

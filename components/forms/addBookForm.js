@@ -3,7 +3,7 @@ import renderToDOM from '../../utils/renderToDom';
 import selectAuthor from './selectAuthor';
 
 // USING THIS FORM FOR BOTH CREATE AND UPDATE
-const addBookForm = (obj = {}, user) => {
+const addBookForm = (user, obj = {}) => {
   clearDom();
 
   const domString = `

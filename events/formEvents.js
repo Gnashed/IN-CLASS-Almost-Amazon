@@ -16,7 +16,7 @@ const formEvents = (user) => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
-        uid: user.id,
+        uid: user.uid,
       };
       // When creating a book, Firebase will give us the key of the object we just created. Console.warn
       // to see what's being returned.

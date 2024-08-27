@@ -58,7 +58,7 @@ const formEvents = (user) => {
         last_name: document.querySelector('#last_name').value,
         email: document.querySelector('#email').value,
         favorite: document.querySelector('#favorite').checked,
-        uid: user.id,
+        uid: user.uid,
       };
 
       createAuthor(payload).then(({ name }) => {

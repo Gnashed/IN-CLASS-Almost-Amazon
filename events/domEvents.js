@@ -22,13 +22,13 @@ const domEvents = (user) => {
 
     if (e.target.id.includes('add-book-btn')) {
       // console.warn('ADD BOOK');
-      addBookForm();
+      addBookForm(user);
     }
 
     if (e.target.id.includes('edit-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
       // Grab current object from Firebase to prepop the form with those values.
-      getSingleBook(firebaseKey).then((singleBook) => addBookForm(singleBook));
+      getSingleBook(firebaseKey).then((singleBook) => addBookForm(singleBook, user));
     }
 
     if (e.target.id.includes('view-book-btn')) {

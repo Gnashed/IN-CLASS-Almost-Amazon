@@ -29,7 +29,7 @@ const navigationEvents = (user) => {
     getAuthors(user.uid).then(showAuthors);
   });
   document.querySelector('#favorite-authors').addEventListener('click', () => {
-    favoriteAuthors(user).then(showAuthors);
+    favoriteAuthors(user.uid).then(showAuthors);
   });
 
   // STRETCH: SEARCH

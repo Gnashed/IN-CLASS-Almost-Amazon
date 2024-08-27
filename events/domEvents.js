@@ -20,6 +20,7 @@ const domEvents = (user) => {
       }
     }
 
+    // TODO: Start debugging this
     if (e.target.id.includes('add-book-btn')) {
       // console.warn('ADD BOOK');
       // eslint-disable-next-line comma-dangle

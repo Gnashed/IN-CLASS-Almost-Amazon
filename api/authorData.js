@@ -99,8 +99,8 @@ const favoriteAuthors = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      const userId = Object.values(data).filter((item) => item.uid);
-      resolve(userId);
+      const favorites = Object.values(data).filter((item) => item.favorite);
+      resolve(favorites);
     })
     .catch(reject);
 });

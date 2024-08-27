@@ -8,7 +8,7 @@ import { showBooks } from '../pages/books';
 import viewAuthor from '../pages/viewAuthor';
 import viewBook from '../pages/viewBook';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // ============================ BOOKS ============================
     if (e.target.id.includes('delete-book')) {
@@ -16,7 +16,7 @@ const domEvents = () => {
       if (window.confirm('Want to delete?')) {
         // console.warn('CLICKED DELETE BOOK', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
-        deleteBook(firebaseKey).then(getBooks().then(showBooks));
+        deleteBook(firebaseKey).then(getBooks(user.uid).then(showBooks));
       }
     }
 

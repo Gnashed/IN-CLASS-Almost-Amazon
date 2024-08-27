@@ -24,7 +24,7 @@ const formEvents = (user) => {
         const patchPayload = { firebaseKey: name };
 
         updateBook(patchPayload).then(() => {
-          getBooks(user.id).then(showBooks);
+          getBooks(user.uid).then(showBooks);
         });
       });
     }

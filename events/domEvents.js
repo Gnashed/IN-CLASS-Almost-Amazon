@@ -11,7 +11,7 @@ import viewBook from '../pages/viewBook';
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // ============================ BOOKS ============================
-    if (e.target.id.includes('delete-book')) {
+    if (e.target.id.includes('delete-book-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         // console.warn('CLICKED DELETE BOOK', e.target.id);
@@ -22,13 +22,14 @@ const domEvents = (user) => {
 
     if (e.target.id.includes('add-book-btn')) {
       // console.warn('ADD BOOK');
-      addBookForm(user);
+      // eslint-disable-next-line comma-dangle
+      addBookForm(user,);
     }
 
     if (e.target.id.includes('edit-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
       // Grab current object from Firebase to prepop the form with those values.
-      getSingleBook(firebaseKey).then((singleBook) => addBookForm(singleBook, user));
+      getSingleBook(firebaseKey).then((singleBook) => addBookForm(user, singleBook));
     }
 
     if (e.target.id.includes('view-book-btn')) {
@@ -62,7 +63,7 @@ const domEvents = (user) => {
         const [, firebaseKey] = e.target.id.split('--');
         // deleteSingleAuthor(firebaseKey).then(getAuthors().then(showAuthors));
         deleteAuthorBooksRelationship(firebaseKey).then(() => {
-          getAuthors().then(showAuthors);
+          getAuthors(user.uid).then(showAuthors);
         });
       }
     }

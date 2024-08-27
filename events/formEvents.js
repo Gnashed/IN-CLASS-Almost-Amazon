@@ -3,7 +3,7 @@ import { createBook, updateBook, getBooks } from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 
-const formEvents = () => {
+const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
     // CLICK EVENT FOR SUBMITTING FORM FOR ADDING A BOOK
@@ -16,6 +16,7 @@ const formEvents = () => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
+        uid: user.id,
       };
       // When creating a book, Firebase will give us the key of the object we just created. Console.warn
       // to see what's being returned.
@@ -23,7 +24,7 @@ const formEvents = () => {
         const patchPayload = { firebaseKey: name };
 
         updateBook(patchPayload).then(() => {
-          getBooks().then(showBooks);
+          getBooks(user.id).then(showBooks);
         });
       });
     }
@@ -39,11 +40,12 @@ const formEvents = () => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
+        uid: user.uid,
         firebaseKey,
       };
 
       updateBook(payload).then(() => {
-        getBooks().then(showBooks);
+        getBooks(user.uid).then(showBooks);
       });
       // console.warn(firebaseKey);
     }
